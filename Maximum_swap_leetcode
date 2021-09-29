@@ -1,0 +1,48 @@
+class Solution {
+public:
+    int maximumSwap(int num) {
+        int temp=num;
+        vector<int> arr;
+        while(temp!=0)
+        {
+            arr.push_back(temp%10);
+            temp=temp/10;
+        }
+        int n=arr.size();
+        //for(int i=n-1;i>=0;i--)
+        //{
+        //    cout<<arr[i];
+        //}
+        int temp_arr[n];
+        temp_arr[0]=0;
+        for(int i=1;i<n;i++)
+        {
+            if(arr[i]>arr[temp_arr[i-1]])
+                temp_arr[i]=i;
+            else
+                temp_arr[i]=temp_arr[i-1];
+        }
+        //for(int i=0;i<n;i++)
+        //{
+            //cout<<"temp arr "<<temp_arr[i]<<endl;
+        //}
+        //cout<<"size"<<n<<endl;
+        for(int i=n-1;i>=0;i--)
+        {
+            if(arr[i]<arr[temp_arr[i]])
+            {
+                swap(arr[i],arr[temp_arr[i]]);
+                break;
+            }
+        }
+        temp=0;
+        for(int i=0;i<n;i++)
+        {
+            temp=temp+arr[i]*pow(10,i);
+        }
+        //cout<<temp;
+        if(num==0)
+            return 0;
+        return temp;
+    }
+};
