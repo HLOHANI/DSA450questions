@@ -1,0 +1,44 @@
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        stack<pair<int,int>> indexWithZero;
+        int i,j;
+        int row = matrix.size();
+        int col = matrix[0].size();
+        for(i= 0 ;i < row; i++)
+        {
+            for(j = 0;j < col; j++)
+            {
+                if(matrix[i][j] == 0)
+                {
+                    indexWithZero.push(make_pair(i,j));
+                }
+            }
+        }
+        if(indexWithZero.empty() == true)
+        {
+            //do nothing
+        }
+        else{
+            while(!indexWithZero.empty())
+            {
+                for(i = 0;i < row; i++)
+                {
+                    for(j = 0;j < col; j++)
+                    {
+                        pair<int,int> top = indexWithZero.top();
+                        if(i == top.first)
+                        {
+                            matrix[i][j] = 0;
+                        }
+                        if(j == top.second)
+                        {
+                            matrix[i][j] = 0;
+                        }
+                    }
+                }
+                indexWithZero.pop();
+            }
+        }
+    }
+};
