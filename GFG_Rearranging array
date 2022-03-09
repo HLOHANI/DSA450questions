@@ -1,0 +1,23 @@
+class Solution{
+    public:
+    void Rearrange(int a[], int n, int answer[])
+    {
+        sort(a,a+n);
+        int i=0;
+        int j=n-1;
+        int k=0;
+
+        while(i<=j)
+        {
+            if(i==j)
+            answer[k]=a[i];
+            
+            else
+            {
+                answer[k]=a[i];
+                answer[k+1]=a[j];
+            }
+            i++;j--;k+=2;
+        }
+    }
+};
